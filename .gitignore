@@ -1,0 +1,7 @@
+data/
+logs/
+__pycache__/
+*.pyc
+results/**/captions.jsonl
+results/**/answers.jsonl
+results/tfhh_*/*.pt

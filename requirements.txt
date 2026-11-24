@@ -1,0 +1,10 @@
+torch>=2.1
+transformers==4.51.3
+accelerate>=0.30
+huggingface_hub
+tokenizers
+pillow
+numpy
+matplotlib
+# optional, for --load-4bit on 16 GB GPUs:
+# bitsandbytes
