@@ -30,23 +30,25 @@ def main():
             continue
         jobs.append((marker, cmd))
     running, failed = {}, []
+    slots = list(enumerate(gpus))  # GPUS=0,0,0 runs 3 jobs at once on GPU 0
     while jobs or running:
-        for g in gpus:
-            if g not in running and jobs:
+        for slot, g in slots:
+            if slot not in running and jobs:
                 marker, cmd = jobs.pop(0)
                 name = marker.replace("/", "_").strip("_")
                 log = open(os.path.join(args.logdir, name + ".log"), "w")
                 env = dict(os.environ, CUDA_VISIBLE_DEVICES=g)
                 print(f"[gpu {g}] start {marker}", flush=True)
-                running[g] = (subprocess.Popen(cmd, shell=True, env=env, stdout=log, stderr=subprocess.STDOUT),
+                running[slot] = (subprocess.Popen(cmd, shell=True, env=env, stdout=log, stderr=subprocess.STDOUT),
                               marker, time.time())
-        for g, (proc, marker, t0) in list(running.items()):
+        for slot, (proc, marker, t0) in list(running.items()):
+            g = gpus[slot]
             if proc.poll() is not None:
                 ok = proc.returncode == 0 and os.path.exists(marker)
                 print(f"[gpu {g}] {'done' if ok else 'FAILED'} {marker} ({(time.time() - t0) / 60:.1f} min)", flush=True)
                 if not ok:
                     failed.append(marker)
-                del running[g]
+                del running[slot]
         time.sleep(2)
     if failed:
         print("FAILED jobs (see logs/):", *failed, sep="\n  ")
