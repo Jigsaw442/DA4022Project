@@ -1,0 +1,21 @@
+{
+ "n": 200,
+ "CHAIR_s": 31.5,
+ "CHAIR_i": 22.544642857142858,
+ "recall": 54.24292845257904,
+ "avg_len_words": 62.62,
+ "objs_per_cap": 2.24,
+ "method": "hybrid",
+ "budget": 16,
+ "decode": "greedy",
+ "adaptive": null,
+ "risk_threshold": null,
+ "avg_visual_tokens": 16.0,
+ "avg_prompt_len": 35.0,
+ "sec_per_caption": 0.9308047890663147,
+ "tokens_per_sec": 85.81283738357448,
+ "tau": null,
+ "n_heads": 0,
+ "trigger_rate": null,
+ "delta": "results/tfhh_hybrid64/tfhh_delta.pt"
+}
