@@ -80,7 +80,10 @@ greedy) were timed while 3 jobs shared the GPU under the old, slower attention-r
 - Decode speed is overhead-bound (batch 1, eager attention), so fewer visual tokens give only about 12% faster
   captioning. The savings from compression are mainly in KV-cache memory and prefill cost.
 
-## Code changes in this PR
+## Implementation notes
+
+Two code changes were made for this run:
+
 
 - `hadl/attention.py`: attention statistics are now accumulated on the GPU without any GPU→CPU sync, with cached masks and
   slice-based row selection. Before this change, recording forced about 100 syncs per generated token. Outputs are
