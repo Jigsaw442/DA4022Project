@@ -32,6 +32,8 @@ anchor + appearance design. Say this in the report.
 
 ```bash
 conda create -n hadl python=3.10 -y && conda activate hadl
+# install the torch build that matches your driver FIRST (check the CUDA version in `nvidia-smi`), e.g.:
+pip install torch --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
 bash scripts/setup_data.sh data          # COCO val2014 + annotations + POPE (~7 GB)
 python -c "from huggingface_hub import snapshot_download; snapshot_download('llava-hf/llava-1.5-7b-hf')"  # ~14 GB
@@ -42,6 +44,14 @@ Optional sanity check (CPU, 1 min, no downloads):
 python tests/make_tiny.py /tmp/tiny && python tests/test_pipeline.py /tmp/tiny
 ```
 It checks our input path gives the same logits as HF LLaVA (max diff ~1e-7), that interventions behave as intended, and that compressors return the right token counts.
+
+## GPU preflight (run this before the long run)
+
+```bash
+python scripts/gpu_preflight.py
+```
+
+It takes about 5 minutes. It loads the real model on the GPU and runs each GPU code path once: the input path vs HF logits, captioning with greedy / AD-HH / VR-HH, the POPE forward, the attribution backward, and one TF-HH step. For each step it prints PASS/FAIL, peak memory and decoding speed. Add `--skip-train` on GPUs under 40 GB.
 
 ## Run everything
 
