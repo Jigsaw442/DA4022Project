@@ -24,6 +24,9 @@ class Sample:
 
 def load(model_id: str = DEFAULT_MODEL, dtype: str = "float16", load_4bit: bool = False, device: str = "cuda"):
     from transformers import AutoProcessor, LlavaForConditionalGeneration
+    if device.startswith("cuda") and not torch.cuda.is_available():
+        raise RuntimeError("CUDA is not available to PyTorch. Check `nvidia-smi` and install a torch build "
+                           "matching your CUDA driver, or pass --device cpu (very slow).")
     kw = dict(torch_dtype=getattr(torch, dtype), attn_implementation="eager", low_cpu_mem_usage=True)
     if load_4bit:
         from transformers import BitsAndBytesConfig
