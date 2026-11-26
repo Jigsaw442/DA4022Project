@@ -1,0 +1,21 @@
+{
+ "n": 200,
+ "CHAIR_s": 41.5,
+ "CHAIR_i": 23.861852433281005,
+ "recall": 76.87188019966722,
+ "avg_len_words": 86.91,
+ "objs_per_cap": 3.185,
+ "method": "none",
+ "budget": 576,
+ "decode": "vrhh",
+ "adaptive": null,
+ "risk_threshold": null,
+ "avg_visual_tokens": 576.0,
+ "avg_prompt_len": 595.0,
+ "sec_per_caption": 1.5561374759674071,
+ "tokens_per_sec": 72.50323428517127,
+ "tau": 0.43986190780997275,
+ "n_heads": 20,
+ "trigger_rate": 0.5119833077092028,
+ "delta": null
+}

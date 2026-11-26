@@ -1,0 +1,18 @@
+{
+ "n": 1200,
+ "accuracy": 71.58333333333333,
+ "precision": 91.25,
+ "recall": 48.264462809917354,
+ "f1": 63.13513513513514,
+ "yes_ratio": 26.666666666666668,
+ "method": "hybrid",
+ "budget": 16,
+ "decode": "adhh",
+ "adaptive": null,
+ "risk_threshold": null,
+ "avg_visual_tokens": 16.0,
+ "sec_per_question": 0.011522602438926697,
+ "tau": 0.6714308619499206,
+ "pope_file": "coco_pope_adversarial.json",
+ "delta": null
+}

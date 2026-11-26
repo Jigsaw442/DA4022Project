@@ -1,0 +1,33 @@
+torch 2.11.0+cu128 (CUDA build 12.8), transformers 4.51.3
+GPU 0: NVIDIA H100 NVL, 93 GB
+bf16 supported: True
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files:  33%|███▎      | 1/3 [02:07<04:14, 127.24s/it]Fetching 3 files:  67%|██████▋   | 2/3 [02:08<01:04, 64.35s/it] Fetching 3 files: 100%|██████████| 3/3 [02:16<00:00, 45.37s/it]Fetching 3 files: 100%|██████████| 3/3 [02:16<00:00, 45.37s/it]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 174.78it/s]
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+[PASS] load model (fp16, eager) on cuda (141.9s, peak 13.2 GB)
+    max |logit diff| = 0.0000, same top token: True
+[PASS] our input path matches HF LLaVA logits (576 tokens) (0.3s, peak 13.6 GB)
+    off   64 tok in 1.3s (48.9 tok/s): The image features a dog lying on a shelf, surrounded by various shoes. The dog is positioned in the middle of
+    adhh  59 tok in 1.2s (49.0 tok/s): The image features a dog lying on a shelf, surrounded by various shoes. The dog appears to be resting comforta
+    vrhh  64 tok in 1.3s (48.8 tok/s): The image features a dog lying on a shelf, surrounded by various shoes. The dog is positioned in the middle of
+[PASS] caption generation: greedy / AD-HH / VR-HH at 64 tokens (3.9s, peak 13.5 GB)
+    yes ids [3582, 3869, 4874, 8241, 21143, 22483], no ids [694, 1217, 1939, 3782, 6632, 11698], top token 'No'
+[PASS] POPE single forward (Yes/No logits) (0.0s, peak 13.5 GB)
+    head score tensor (32, 32), finite
+[PASS] attribution backward (find_heads path) (0.1s, peak 14.0 GB)
+    training 3 heads in 1 layers
+    {'step': 0, 'ce': 1.672322154045105, 'log_text_attn': -0.7925010323524475, 'time': 0.3124516010284424}
+    saved /tmp/hadl_preflight_tfhh/tfhh_delta.pt
+[PASS] one TF-HH training step (train_tfhh.py, bf16) (11.4s, peak 0.1 GB)
+
+==== PREFLIGHT SUMMARY ====
+PASS  load model (fp16, eager) on cuda  [141.9s, peak 13.2 GB]
+PASS  our input path matches HF LLaVA logits (576 tokens)  [0.3s, peak 13.6 GB]
+PASS  caption generation: greedy / AD-HH / VR-HH at 64 tokens  [3.9s, peak 13.5 GB]
+PASS  POPE single forward (Yes/No logits)  [0.0s, peak 13.5 GB]
+PASS  attribution backward (find_heads path)  [0.1s, peak 14.0 GB]
+PASS  one TF-HH training step (train_tfhh.py, bf16)  [11.4s, peak 0.1 GB]
+
+Decoding speed ~49 tok/s at 64 tokens -> ~2.6s per caption
+
+ALL PASSED - safe to start scripts/run_all.sh

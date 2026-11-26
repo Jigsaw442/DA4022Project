@@ -1,0 +1,18 @@
+{
+ "n": 1200,
+ "accuracy": 77.66666666666667,
+ "precision": 93.54005167958657,
+ "recall": 59.83471074380166,
+ "f1": 72.98387096774194,
+ "yes_ratio": 32.25,
+ "method": "hybrid",
+ "budget": 64,
+ "decode": "greedy",
+ "adaptive": null,
+ "risk_threshold": null,
+ "avg_visual_tokens": 64.0,
+ "sec_per_question": 0.00968327780564626,
+ "tau": null,
+ "pope_file": "coco_pope_adversarial.json",
+ "delta": "results/tfhh_hybrid64/tfhh_delta.pt"
+}
